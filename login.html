@@ -25,21 +25,18 @@
       var password = document.getElementById("password").value;
       var message = document.getElementById("message");
 
-      // check empty fields
       if (username == "" || password == "") {
         message.style.color = "red";
         message.innerHTML = "Fields cannot be empty";
         return;
       }
 
-      // basic sql injection check
       if (username.includes("'") || username.includes("OR") || username.includes("=")) {
         message.style.color = "red";
         message.innerHTML = "Invalid input detected. Login blocked.";
         return;
       }
 
-      // valid login
       if (username == "admin" && password == "password123") {
         message.style.color = "green";
         message.innerHTML = "User successfully logged in. Redirecting to dashboard...";
@@ -49,7 +46,6 @@
         return;
       }
 
-      // invalid credentials
       message.style.color = "red";
       message.innerHTML = "Invalid credentials";
     }
