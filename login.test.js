@@ -17,7 +17,6 @@ describe("Task1 Test Cases - Login Page", () => {
     document = window.document;
   });
 
-  // TC_01 - Valid Login
   test("TC_01 - Valid login: user successfully logged in", () => {
     document.getElementById("username").value = "admin";
     document.getElementById("password").value = "password123";
@@ -27,7 +26,6 @@ describe("Task1 Test Cases - Login Page", () => {
     expect(msg.innerHTML).toContain("successfully logged in");
   });
 
-  // TC_02 - Invalid Login
   test("TC_02 - Invalid login: error message displayed", () => {
     document.getElementById("username").value = "wronguser";
     document.getElementById("password").value = "wrongpass";
@@ -36,7 +34,6 @@ describe("Task1 Test Cases - Login Page", () => {
     expect(msg.innerHTML).toBe("Invalid credentials");
   });
 
-  // TC_03 - Empty Fields
   test("TC_03 - Empty fields: validation message displayed", () => {
     document.getElementById("username").value = "";
     document.getElementById("password").value = "";
@@ -45,7 +42,6 @@ describe("Task1 Test Cases - Login Page", () => {
     expect(msg.innerHTML).toBe("Fields cannot be empty");
   });
 
-  // TC_04 - SQL Injection
   test("TC_04 - SQL injection: login blocked", () => {
     document.getElementById("username").value = "' OR '1'='1";
     document.getElementById("password").value = "anypassword";
