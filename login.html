@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+</head>
+<body>
+
+  <h2>Login</h2>
+
+  <form onsubmit="return false;">
+    <label>Username:</label><br>
+    <input type="text" id="username"><br><br>
+
+    <label>Password:</label><br>
+    <input type="password" id="password"><br><br>
+
+    <button onclick="login()">Login</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    function login() {
+      var username = document.getElementById("username").value;
+      var password = document.getElementById("password").value;
+      var message = document.getElementById("message");
+
+      // check empty fields
+      if (username == "" || password == "") {
+        message.style.color = "red";
+        message.innerHTML = "Fields cannot be empty";
+        return;
+      }
+
+      // basic sql injection check
+      if (username.includes("'") || username.includes("OR") || username.includes("=")) {
+        message.style.color = "red";
+        message.innerHTML = "Invalid input detected. Login blocked.";
+        return;
+      }
+
+      // valid login
+      if (username == "admin" && password == "password123") {
+        message.style.color = "green";
+        message.innerHTML = "User successfully logged in. Redirecting to dashboard...";
+        setTimeout(function() {
+          window.location.href = "dashboard.html";
+        }, 1500);
+        return;
+      }
+
+      // invalid credentials
+      message.style.color = "red";
+      message.innerHTML = "Invalid credentials";
+    }
+  </script>
+
+</body>
+</html>
